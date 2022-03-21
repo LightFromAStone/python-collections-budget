@@ -9,6 +9,7 @@ spending_categories = []
 
 for expense in expenses.list:
     spending_categories.append(expense.category)
+# maybe a comprehension instead? spending_categories = [x for x in expenses.list]
 
 spending_counter = collections.Counter(spending_categories)
 # print(spending_counter)
