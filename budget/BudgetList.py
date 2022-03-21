@@ -17,6 +17,7 @@ class BudgetList():
             self.overages.append(item)
             self.sum_overages += item
     
+    # this special dunder method allows the built in function len() to work with our class. Bascially len() checks to see if the passed into it has a __len__ method, and calls it if it does.
     def __len__(self):
         return len(self.expenses) + len(self.overages)
 
@@ -30,7 +31,7 @@ def main():
     for expense in expenses.list:
         myBudgetList.append(expense.amount)
     
-    print('The count of all expenses: ' + str(myBudgetList.__len__()))
+    print('The count of all expenses: ' + str(len(myBudgetList)))
 
 if __name__ == '__main__':
     main()
