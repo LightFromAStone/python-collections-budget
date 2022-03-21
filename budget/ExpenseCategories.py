@@ -15,16 +15,23 @@ def main():
         if not (a.issubset(b) and b.issubset(a)):
             print('Sets are NOT equal by subset test')
 
-    # don't know why, but these two timeit statements break the code with an unexpected indent error
-    print(timeit.timeit(stmt = 'expenses.categorize_for_loop()', setup = '''
-                        from . import Expense
-                        expenses = Expense.Expenses()
-                        expenses.read_expenses('data/spending_data.csv')''', number = 100000, globals = globals()))
+    # this horrific lack of indentation in the multiline string is necessary because otherwise you get an unexpected indent error
+    print(timeit.timeit(stmt = 'expenses.categorize_for_loop()', setup = 
+                        '''
+from . import Expense
+expenses = Expense.Expenses()
+expenses.read_expenses('data/spending_data.csv')
+                        ''',
+                        number = 100000, globals = globals()))
     
-    print(timeit.timeit(stmt = 'expenses.categorize_set_comprehension()', setup = '''
-                        from . import Expense
-                        expenses = Expense.Expenses()
-                        expenses.read_expenses('data/spending_data.csv')''', number = 100000, globals = globals()))
+    print(timeit.timeit(stmt = 'expenses.categorize_set_comprehension()', setup = 
+                        '''
+from . import Expense
+expenses = Expense.Expenses()
+expenses.read_expenses('data/spending_data.csv')
+                        ''',
+                        number = 100000, globals = globals()))
+    
     
     fig, ax = plt.subplots()
     labels = ['Necessary', 'Food', 'Unnecessary']
